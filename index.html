@@ -4,99 +4,103 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wilderness & Wildlife</title>
-  <meta name="description" content="Wilderness & Wildlife – nature conservation, trips, and photography." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b1a12;         /* deep forest */
-      --bg-2:#0f2319;       /* darker forest */
-      --text:#eaf2ed;       /* mist */
-      --muted:#c9d5cc;      /* soft moss */
-      --brand:#88c57f;      /* fern green */
-      --brand-2:#5aa06a;    /* pine */
-      --card: rgba(15, 35, 25, 0.55); /* glass */
+    :root {
+      --bg:#0b1a12;
+      --bg-2:#0f2319;
+      --text:#eaf2ed;
+      --muted:#c9d5cc;
+      --brand:#88c57f;
+      --brand-2:#5aa06a;
+      --card: rgba(15, 35, 25, 0.55);
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 18px;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    * { box-sizing:border-box }
+    html,body { height:100% }
+    body {
+      margin:0; font-family:Inter, sans-serif;
       color:var(--text); background:linear-gradient(180deg, var(--bg), var(--bg-2));
     }
-    a{color:inherit}
-    img{max-width:100%; display:block}
+    a { color:inherit; text-decoration:none }
+    img { max-width:100%; display:block }
 
-    /* --- Header --- */
-    .nav{position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background:rgba(7,18,13,.45); border-bottom:1px solid rgba(255,255,255,.08)}
-    .nav-inner{max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between}
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
-    .brand img{width:38px; height:38px; border-radius:12px; padding:4px}
-    .brand span{font-weight:800; letter-spacing:.2px}
-    .nav a.link{opacity:.9; text-decoration:none; margin:0 10px}
-    .actions{display:flex; gap:10px}
-    .btn{border:none; padding:10px 16px; border-radius:12px; font-weight:600; cursor:pointer}
-    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.15)}
-    .btn.solid{background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:#0b1a12}
+    /* Navbar */
+    .nav { position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background:rgba(255,255,255,0.5); border-bottom:1px solid rgba(0,0,0,.1); color:#000; }
+    .nav-inner { max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between }
+    .brand { display:flex; align-items:center; gap:10px }
+    .brand img { width:38px; height:38px; border-radius:12px }
+    .brand span { font-weight:800; letter-spacing:.2px }
+    .nav a.link { opacity:.9; margin:0 10px }
+    .actions { display:flex; gap:10px }
+    .btn { border:none; padding:10px 16px; border-radius:12px; font-weight:600; cursor:pointer }
+    .btn.ghost { background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.15) }
+    .btn.solid { background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:#0b1a12 }
 
-    /* --- Hero --- */
-    .hero{position:relative; min-height:78vh; display:grid; place-items:center; overflow:hidden}
-    .hero::before{
-      content:""; position:absolute; inset:0; background:url('./assets/hero.jpg') center/cover no-repeat; filter:contrast(1.05) saturate(1.1);
+    /* Hero */
+    .hero { position:relative; min-height:78vh; display:grid; place-items:center; overflow:hidden }
+    .hero::before {
+      content:""; position:absolute; inset:0;
+      background:url('./assets/background.png') center/cover no-repeat;
+      filter:contrast(1.05) saturate(1.1);
     }
-    .hero::after{ /* dark vignette */
-      content:""; position:absolute; inset:0; background:radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.0), rgba(0,0,0,.55) 70%);
+    .hero::after {
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.0), rgba(0,0,0,.55) 70%);
     }
-    .hero-card{
-      position:relative; z-index:1; max-width:980px; margin:40px 20px; display:grid; grid-template-columns: 120px 1fr; gap:22px; align-items:center;
-      background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:26px; box-shadow:var(--shadow); backdrop-filter: blur(10px);
-      padding:20px;
+    .hero-card {
+      position:relative; z-index:1; max-width:980px; margin:40px 20px;
+      display:grid; grid-template-columns: 120px 1fr; gap:22px; align-items:center;
+      background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:26px;
+      box-shadow:var(--shadow); backdrop-filter: blur(10px); padding:20px;
     }
-    .logo-wrap{ background:transparent; border-radius:20px; padding:10px; display:grid; place-items:center}
-    .logo-wrap img{width:100%; height:auto}
-    .hero h1{margin:8px 0 6px; font-size:clamp(28px, 4vw, 48px); line-height:1.1}
-    .hero p{margin:0; color:var(--muted)}
-    .hero-cta{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
+    .logo-wrap {
+      background: rgba(255,255,255,.85); /* makes logo visible */
+      border-radius: 20px;
+      padding: 10px;
+      display:grid; place-items:center;
+    }
+    .logo-wrap img { width:100%; height:auto }
+    .hero h1 { margin:8px 0 6px; font-size:clamp(28px, 4vw, 48px); line-height:1.1 }
+    .hero p { margin:0; color:var(--muted) }
+    .hero-cta { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap }
 
-    /* --- Sections --- */
-    .section{padding:70px 20px}
-    .container{max-width:1100px; margin:0 auto}
-    .section h2{font-size:clamp(22px, 3vw, 34px); margin:0 0 8px}
-    .section p.lead{color:var(--muted); margin:0 0 30px}
-    .grid{display:grid; gap:16px}
-    .grid.features{grid-template-columns:repeat(auto-fit, minmax(230px, 1fr))}
+    /* Sections */
+    .section { padding:70px 20px }
+    .container { max-width:1100px; margin:0 auto }
+    .section h2 { font-size:clamp(22px, 3vw, 34px); margin:0 0 8px }
+    .section p.lead { color:var(--muted); margin:0 0 30px }
+    .grid { display:grid; gap:16px }
+    .grid.features { grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)) }
+    .card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow) }
+    .card h3 { margin:0 0 6px; font-size:18px }
+    .muted { color:var(--muted) }
 
-    .card{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
-    .card h3{margin:0 0 6px; font-size:18px}
-    .muted{color:var(--muted)}
+    /* Gallery */
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px }
+    .gallery img { border-radius:14px; border:1px solid rgba(255,255,255,.12) }
 
-    /* --- Gallery --- */
-    .gallery{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px}
-    .gallery img{border-radius:14px; border:1px solid rgba(255,255,255,.12)}
+    /* Footer */
+    footer { border-top:1px solid rgba(255,255,255,.08); padding:30px 20px; color:var(--muted) }
 
-    /* --- Footer --- */
-    footer{border-top:1px solid rgba(255,255,255,.08); padding:30px 20px; color:var(--muted)}
-
-    /* --- Small screens --- */
     @media (max-width:640px){
-      .hero-card{grid-template-columns:1fr}
-      .logo-wrap{justify-self:center; width:120px}
+      .hero-card{ grid-template-columns:1fr }
+      .logo-wrap{ justify-self:center; width:120px }
     }
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
+  <!-- Navbar -->
   <header class="nav">
     <div class="nav-inner">
-      <a class="brand" href="#top" aria-label="Wilderness & Wildlife home">
-        <!-- Replace src with your final logo path -->
+      <a class="brand" href="#top">
         <img src="./assets/logo.png" alt="Wilderness & Wildlife logo" />
         <span>Wilderness & Wildlife</span>
       </a>
-      <nav aria-label="primary">
+      <nav>
         <a class="link" href="#about">About</a>
         <a class="link" href="#trips">Trips</a>
         <a class="link" href="#gallery">Gallery</a>
@@ -109,11 +113,11 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" id="top" role="banner">
-    <div class="hero-card" aria-label="Intro">
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-card">
       <div class="logo-wrap">
-        <img src="./assets/logo.png" alt="Wilderness & Wildlife emblem" />
+        <img src="./assets/logo.png" alt="Wilderness & Wildlife logo" />
       </div>
       <div>
         <h1>Explore, protect, and photograph the wild.</h1>
@@ -126,58 +130,34 @@
     </div>
   </section>
 
-  <!-- FEATURES / ABOUT -->
+  <!-- About -->
   <section id="about" class="section">
     <div class="container">
       <h2>What we do</h2>
       <p class="lead">We connect people to nature through ethical wildlife experiences and support local conservation.</p>
       <div class="grid features">
-        <article class="card">
-          <h3>Small group expeditions</h3>
-          <p class="muted">Low-impact, high-experience trips with expert guides and carefully chosen partners.</p>
-        </article>
-        <article class="card">
-          <h3>Leave-no-trace policy</h3>
-          <p class="muted">Practices aligned with conservation best‑standards to protect habitats and species.</p>
-        </article>
-        <article class="card">
-          <h3>Photography workshops</h3>
-          <p class="muted">Field lessons for beginners to pros—composition, tracking, and respectful distance.</p>
-        </article>
-        <article class="card">
-          <h3>Community & education</h3>
-          <p class="muted">Talks, school sessions, and citizen‑science projects that make a real difference.</p>
-        </article>
+        <article class="card"><h3>Small group expeditions</h3><p class="muted">Low-impact, high-experience trips with expert guides and carefully chosen partners.</p></article>
+        <article class="card"><h3>Leave-no-trace policy</h3><p class="muted">Practices aligned with conservation best-standards to protect habitats and species.</p></article>
+        <article class="card"><h3>Photography workshops</h3><p class="muted">Field lessons for beginners to pros—composition, tracking, and respectful distance.</p></article>
+        <article class="card"><h3>Community & education</h3><p class="muted">Talks, school sessions, and citizen-science projects that make a real difference.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- TRIPS / PRICING (placeholder content you can edit later) -->
+  <!-- Trips -->
   <section id="trips" class="section" style="background:rgba(255,255,255,.03); border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08)">
     <div class="container">
       <h2>Upcoming trips</h2>
       <p class="lead">Sample itineraries—update these with your real offerings anytime.</p>
       <div class="grid features">
-        <article class="card">
-          <h3>Highland Wolf Watch</h3>
-          <p class="muted">3 days · tracking, hides, dawn starts · from £349</p>
-          <button class="btn solid" style="margin-top:6px">Reserve</button>
-        </article>
-        <article class="card">
-          <h3>Forest Macro Weekend</h3>
-          <p class="muted">2 days · fungi & insects · from £199</p>
-          <button class="btn solid" style="margin-top:6px">Reserve</button>
-        </article>
-        <article class="card">
-          <h3>Coastal Raptors</h3>
-          <p class="muted">1 day · osprey & kite hides · from £139</p>
-          <button class="btn solid" style="margin-top:6px">Reserve</button>
-        </article>
+        <article class="card"><h3>Highland Wolf Watch</h3><p class="muted">3 days · tracking, hides, dawn starts · from £349</p><button class="btn solid" style="margin-top:6px">Reserve</button></article>
+        <article class="card"><h3>Forest Macro Weekend</h3><p class="muted">2 days · fungi & insects · from £199</p><button class="btn solid" style="margin-top:6px">Reserve</button></article>
+        <article class="card"><h3>Coastal Raptors</h3><p class="muted">1 day · osprey & kite hides · from £139</p><button class="btn solid" style="margin-top:6px">Reserve</button></article>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <!-- Gallery -->
   <section id="gallery" class="section">
     <div class="container">
       <h2>Recent moments</h2>
@@ -191,7 +171,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- Contact -->
   <section id="contact" class="section" style="padding-bottom:90px">
     <div class="container">
       <h2>Contact</h2>
