@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wilderness & Wildlife</title>
+  <meta name="description" content="Wilderness & Wildlife – nature conservation, trips, and photography." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1a12;         /* deep forest */
+      --bg-2:#0f2319;       /* darker forest */
+      --text:#eaf2ed;       /* mist */
+      --muted:#c9d5cc;      /* soft moss */
+      --brand:#88c57f;      /* fern green */
+      --brand-2:#5aa06a;    /* pine */
+      --card: rgba(15, 35, 25, 0.55); /* glass */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text); background:linear-gradient(180deg, var(--bg), var(--bg-2));
+    }
+    a{color:inherit}
+    img{max-width:100%; display:block}
+
+    /* --- Header --- */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background:rgba(7,18,13,.45); border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav-inner{max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+    .brand img{width:38px; height:38px; border-radius:12px; background:#fff; padding:4px}
+    .brand span{font-weight:800; letter-spacing:.2px}
+    .nav a.link{opacity:.9; text-decoration:none; margin:0 10px}
+    .actions{display:flex; gap:10px}
+    .btn{border:none; padding:10px 16px; border-radius:12px; font-weight:600; cursor:pointer}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.15)}
+    .btn.solid{background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:#0b1a12}
+
+    /* --- Hero --- */
+    .hero{position:relative; min-height:78vh; display:grid; place-items:center; overflow:hidden}
+    .hero::before{
+      content:""; position:absolute; inset:0; background:url('./assets/hero.jpg') center/cover no-repeat; filter:contrast(1.05) saturate(1.1);
+    }
+    .hero::after{ /* dark vignette */
+      content:""; position:absolute; inset:0; background:radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.0), rgba(0,0,0,.55) 70%);
+    }
+    .hero-card{
+      position:relative; z-index:1; max-width:980px; margin:40px 20px; display:grid; grid-template-columns: 120px 1fr; gap:22px; align-items:center;
+      background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:26px; box-shadow:var(--shadow); backdrop-filter: blur(10px);
+      padding:20px;
+    }
+    .logo-wrap{background:rgba(255,255,255,.9); border-radius:20px; padding:10px; display:grid; place-items:center}
+    .logo-wrap img{width:100%; height:auto}
+    .hero h1{margin:8px 0 6px; font-size:clamp(28px, 4vw, 48px); line-height:1.1}
+    .hero p{margin:0; color:var(--muted)}
+    .hero-cta{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
+
+    /* --- Sections --- */
+    .section{padding:70px 20px}
+    .container{max-width:1100px; margin:0 auto}
+    .section h2{font-size:clamp(22px, 3vw, 34px); margin:0 0 8px}
+    .section p.lead{color:var(--muted); margin:0 0 30px}
+    .grid{display:grid; gap:16px}
+    .grid.features{grid-template-columns:repeat(auto-fit, minmax(230px, 1fr))}
+
+    .card{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px; font-size:18px}
+    .muted{color:var(--muted)}
+
+    /* --- Gallery --- */
+    .gallery{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px}
+    .gallery img{border-radius:14px; border:1px solid rgba(255,255,255,.12)}
+
+    /* --- Footer --- */
+    footer{border-top:1px solid rgba(255,255,255,.08); padding:30px 20px; color:var(--muted)}
+
+    /* --- Small screens --- */
+    @media (max-width:640px){
+      .hero-card{grid-template-columns:1fr}
+      .logo-wrap{justify-self:center; width:120px}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Wilderness & Wildlife home">
+        <!-- Replace src with your final logo path -->
+        <img src="./assets/logo.png" alt="Wilderness & Wildlife logo" />
+        <span>Wilderness & Wildlife</span>
+      </a>
+      <nav aria-label="primary">
+        <a class="link" href="#about">About</a>
+        <a class="link" href="#trips">Trips</a>
+        <a class="link" href="#gallery">Gallery</a>
+        <a class="link" href="#contact">Contact</a>
+      </nav>
+      <div class="actions">
+        <button class="btn ghost" onclick="scrollToId('contact')">Email us</button>
+        <button class="btn solid" onclick="scrollToId('trips')">Explore</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top" role="banner">
+    <div class="hero-card" aria-label="Intro">
+      <div class="logo-wrap">
+        <img src="./assets/logo-dark-on-light.png" alt="Wilderness & Wildlife emblem" />
+      </div>
+      <div>
+        <h1>Explore, protect, and photograph the wild.</h1>
+        <p>Guided adventures, conservation projects, and field workshops in unforgettable landscapes.</p>
+        <div class="hero-cta">
+          <button class="btn solid" onclick="scrollToId('trips')">View upcoming trips</button>
+          <button class="btn ghost" onclick="scrollToId('about')">Learn more</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES / ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>What we do</h2>
+      <p class="lead">We connect people to nature through ethical wildlife experiences and support local conservation.</p>
+      <div class="grid features">
+        <article class="card">
+          <h3>Small group expeditions</h3>
+          <p class="muted">Low-impact, high-experience trips with expert guides and carefully chosen partners.</p>
+        </article>
+        <article class="card">
+          <h3>Leave-no-trace policy</h3>
+          <p class="muted">Practices aligned with conservation best‑standards to protect habitats and species.</p>
+        </article>
+        <article class="card">
+          <h3>Photography workshops</h3>
+          <p class="muted">Field lessons for beginners to pros—composition, tracking, and respectful distance.</p>
+        </article>
+        <article class="card">
+          <h3>Community & education</h3>
+          <p class="muted">Talks, school sessions, and citizen‑science projects that make a real difference.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIPS / PRICING (placeholder content you can edit later) -->
+  <section id="trips" class="section" style="background:rgba(255,255,255,.03); border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08)">
+    <div class="container">
+      <h2>Upcoming trips</h2>
+      <p class="lead">Sample itineraries—update these with your real offerings anytime.</p>
+      <div class="grid features">
+        <article class="card">
+          <h3>Highland Wolf Watch</h3>
+          <p class="muted">3 days · tracking, hides, dawn starts · from £349</p>
+          <button class="btn solid" style="margin-top:6px">Reserve</button>
+        </article>
+        <article class="card">
+          <h3>Forest Macro Weekend</h3>
+          <p class="muted">2 days · fungi & insects · from £199</p>
+          <button class="btn solid" style="margin-top:6px">Reserve</button>
+        </article>
+        <article class="card">
+          <h3>Coastal Raptors</h3>
+          <p class="muted">1 day · osprey & kite hides · from £139</p>
+          <button class="btn solid" style="margin-top:6px">Reserve</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>Recent moments</h2>
+      <p class="lead">Swap these images for your own—drag and drop into the <code>/assets</code> folder and update the file names.</p>
+      <div class="gallery">
+        <img src="./assets/sample-1.jpg" alt="Deer at the edge of a forest" />
+        <img src="./assets/sample-2.jpg" alt="Bear near a stream" />
+        <img src="./assets/sample-3.jpg" alt="Waterfall in the mountains" />
+        <img src="./assets/sample-4.jpg" alt="Pine forest in morning mist" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section" style="padding-bottom:90px">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="lead">Questions, custom trips, or collaborations—drop us a message.</p>
+      <form class="card" name="contact" method="POST" data-netlify="true" style="display:grid; gap:12px">
+        <input type="hidden" name="form-name" value="contact" />
+        <label> Name <br><input name="name" required placeholder="Your name" style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.07); color:var(--text)"></label>
+        <label> Email <br><input type="email" name="email" required placeholder="you@example.com" style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.07); color:var(--text)"></label>
+        <label> Message <br><textarea name="message" rows="4" placeholder="How can we help?" style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.07); color:var(--text)"></textarea></label>
+        <div style="display:flex; gap:10px; align-items:center">
+          <button class="btn solid" type="submit">Send</button>
+          <span class="muted">or email <a href="mailto:hello@wildernesswildlife.example">hello@wildernesswildlife.example</a></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Wilderness & Wildlife</div>
+      <div class="muted">Built with ♥ in nature</div>
+    </div>
+  </footer>
+
+  <script>
+    const scrollToId = (id) => document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
