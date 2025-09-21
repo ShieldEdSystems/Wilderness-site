@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wilderness & Wildlife</title>
+  <meta name="description" content="Wilderness & Wildlife – nature conservation, trips, and photography." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root {
+    :root{
       --bg:#0b1a12;
       --bg-2:#0f2319;
       --text:#eaf2ed;
@@ -19,93 +20,119 @@
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 18px;
     }
-    * { box-sizing:border-box }
-    html,body { height:100% }
-    body {
-      margin:0; font-family:Inter, sans-serif;
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color:var(--text); background:linear-gradient(180deg, var(--bg), var(--bg-2));
     }
-    a { color:inherit; text-decoration:none }
-    img { max-width:100%; display:block }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
 
-    /* Navbar */
-    .nav { position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background:rgba(255,255,255,0.5); border-bottom:1px solid rgba(0,0,0,.1); color:#000; }
-    .nav-inner { max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between }
-    .brand { display:flex; align-items:center; gap:10px }
-    .brand img { width:38px; height:38px; border-radius:12px }
-    .brand span { font-weight:800; letter-spacing:.2px }
-    .nav a.link { opacity:.9; margin:0 10px }
-    .actions { display:flex; gap:10px }
-    .btn { border:none; padding:10px 16px; border-radius:12px; font-weight:600; cursor:pointer }
-    .btn.ghost { background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.15) }
-    .btn.solid { background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:#0b1a12 }
+    /* --- Header --- */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background:rgba(255,255,255,0.75); border-bottom:1px solid rgba(0,0,0,.1); color:#000}
+    .nav-inner{max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+    .brand img{width:38px; height:38px; border-radius:12px; padding:4px}
+    .brand span{font-weight:800; letter-spacing:.2px; color:#000}
+    .actions{display:flex; gap:10px}
+    .btn{border:none; padding:10px 16px; border-radius:12px; font-weight:600; cursor:pointer}
+    .btn.ghost{background:transparent; color:#000; border:1px solid rgba(0,0,0,.15)}
+    .btn.solid{background:linear-gradient(180deg, var(--brand), var(--brand-2)); color:#0b1a12}
 
-    /* Hero */
-    .hero { position:relative; min-height:78vh; display:grid; place-items:center; overflow:hidden }
-    .hero::before {
-      content:""; position:absolute; inset:0;
-      background:url('./assets/background.png') center/cover no-repeat;
-      filter:contrast(1.05) saturate(1.1);
+    /* --- Hamburger menu --- */
+    .menu { position:relative; }
+    .menu-btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:42px; height:42px; border-radius:10px;
+      border:1px solid rgba(0,0,0,.15);
+      background:rgba(255,255,255,.7);
+      cursor:pointer;
     }
-    .hero::after {
-      content:""; position:absolute; inset:0;
-      background:radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.0), rgba(0,0,0,.55) 70%);
+    .menu-btn span {
+      display:block; width:18px; height:2px; background:#111;
+      margin:2.5px 0; border-radius:2px;
     }
-    .hero-card {
-      position:relative; z-index:1; max-width:980px; margin:40px 20px;
-      display:grid; grid-template-columns: 120px 1fr; gap:22px; align-items:center;
-      background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:26px;
-      box-shadow:var(--shadow); backdrop-filter: blur(10px); padding:20px;
+    .menu-panel {
+      position:absolute; right:0; top:54px; width:200px;
+      background:#fff; color:#111;
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.15);
+      padding:8px; display:none;
     }
-    .logo-wrap {
-      background: rgba(255,255,255,.85); /* makes logo visible */
-      border-radius: 20px;
-      padding: 10px;
-      display:grid; place-items:center;
+    .menu:hover .menu-panel,
+    .menu.open .menu-panel { display:block; }
+
+    .menu-panel .item {
+      display:block; padding:10px 12px; border-radius:10px; color:#111;
     }
-    .logo-wrap img { width:100%; height:auto }
-    .hero h1 { margin:8px 0 6px; font-size:clamp(28px, 4vw, 48px); line-height:1.1 }
-    .hero p { margin:0; color:var(--muted) }
-    .hero-cta { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap }
+    .menu-panel .item:hover { background:rgba(0,0,0,.05) }
 
-    /* Sections */
-    .section { padding:70px 20px }
-    .container { max-width:1100px; margin:0 auto }
-    .section h2 { font-size:clamp(22px, 3vw, 34px); margin:0 0 8px }
-    .section p.lead { color:var(--muted); margin:0 0 30px }
-    .grid { display:grid; gap:16px }
-    .grid.features { grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)) }
-    .card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow) }
-    .card h3 { margin:0 0 6px; font-size:18px }
-    .muted { color:var(--muted) }
+    /* --- Hero --- */
+    .hero{position:relative; min-height:78vh; display:grid; place-items:center; overflow:hidden}
+    .hero::before{
+      content:""; position:absolute; inset:0; background:url('./assets/background.png') center/cover no-repeat; filter:contrast(1.05) saturate(1.1);
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0; background:radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.0), rgba(0,0,0,.55) 70%);
+    }
+    .hero-card{
+      position:relative; z-index:1; max-width:980px; margin:40px 20px; display:grid; grid-template-columns: 120px 1fr; gap:22px; align-items:center;
+      background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:26px; box-shadow:var(--shadow); backdrop-filter: blur(10px);
+      padding:20px;
+    }
+    .logo-wrap{ background: rgba(255,255,255,.85); border-radius:20px; padding:10px; display:grid; place-items:center}
+    .logo-wrap img{width:100%; height:auto}
+    .hero h1{margin:8px 0 6px; font-size:clamp(28px, 4vw, 48px); line-height:1.1; color:#fff}
+    .hero p{margin:0; color:var(--muted)}
+    .hero-cta{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
 
-    /* Gallery */
-    .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px }
-    .gallery img { border-radius:14px; border:1px solid rgba(255,255,255,.12) }
+    /* --- Sections --- */
+    .section{padding:70px 20px}
+    .container{max-width:1100px; margin:0 auto}
+    .section h2{font-size:clamp(22px, 3vw, 34px); margin:0 0 8px}
+    .section p.lead{color:var(--muted); margin:0 0 30px}
+    .grid{display:grid; gap:16px}
+    .grid.features{grid-template-columns:repeat(auto-fit, minmax(230px, 1fr))}
 
-    /* Footer */
-    footer { border-top:1px solid rgba(255,255,255,.08); padding:30px 20px; color:var(--muted) }
+    .card{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.10); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px; font-size:18px}
+    .muted{color:var(--muted)}
 
+    /* --- Gallery --- */
+    .gallery{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px}
+    .gallery img{border-radius:14px; border:1px solid rgba(255,255,255,.12)}
+
+    /* --- Footer --- */
+    footer{border-top:1px solid rgba(255,255,255,.08); padding:30px 20px; color:var(--muted)}
+
+    /* --- Small screens --- */
     @media (max-width:640px){
-      .hero-card{ grid-template-columns:1fr }
-      .logo-wrap{ justify-self:center; width:120px }
+      .hero-card{grid-template-columns:1fr}
+      .logo-wrap{justify-self:center; width:120px}
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <header class="nav">
     <div class="nav-inner">
-      <a class="brand" href="#top">
+      <a class="brand" href="#top" aria-label="Wilderness & Wildlife home">
         <img src="./assets/logo.png" alt="Wilderness & Wildlife logo" />
         <span>Wilderness & Wildlife</span>
       </a>
-      <nav>
-        <a class="link" href="#about">About</a>
-        <a class="link" href="#trips">Trips</a>
-        <a class="link" href="#gallery">Gallery</a>
-        <a class="link" href="#contact">Contact</a>
-      </nav>
+      <div class="menu">
+        <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="primary-menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div id="primary-menu" class="menu-panel" role="menu">
+          <a class="item" href="#about" role="menuitem">About</a>
+          <a class="item" href="#trips" role="menuitem">Trips</a>
+          <a class="item" href="#gallery" role="menuitem">Gallery</a>
+          <a class="item" href="#contact" role="menuitem">Contact</a>
+        </div>
+      </div>
       <div class="actions">
         <button class="btn ghost" onclick="scrollToId('contact')">Email us</button>
         <button class="btn solid" onclick="scrollToId('trips')">Explore</button>
@@ -113,11 +140,11 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="top">
-    <div class="hero-card">
+  <!-- HERO -->
+  <section class="hero" id="top" role="banner">
+    <div class="hero-card" aria-label="Intro">
       <div class="logo-wrap">
-        <img src="./assets/logo.png" alt="Wilderness & Wildlife logo" />
+        <img src="./assets/logo.png" alt="Wilderness & Wildlife emblem" />
       </div>
       <div>
         <h1>Explore, protect, and photograph the wild.</h1>
@@ -130,21 +157,21 @@
     </div>
   </section>
 
-  <!-- About -->
+  <!-- ABOUT -->
   <section id="about" class="section">
     <div class="container">
       <h2>What we do</h2>
       <p class="lead">We connect people to nature through ethical wildlife experiences and support local conservation.</p>
       <div class="grid features">
-        <article class="card"><h3>Small group expeditions</h3><p class="muted">Low-impact, high-experience trips with expert guides and carefully chosen partners.</p></article>
-        <article class="card"><h3>Leave-no-trace policy</h3><p class="muted">Practices aligned with conservation best-standards to protect habitats and species.</p></article>
+        <article class="card"><h3>Small group expeditions</h3><p class="muted">Low‑impact, high‑experience trips with expert guides and carefully chosen partners.</p></article>
+        <article class="card"><h3>Leave‑no‑trace policy</h3><p class="muted">Practices aligned with conservation best‑standards to protect habitats and species.</p></article>
         <article class="card"><h3>Photography workshops</h3><p class="muted">Field lessons for beginners to pros—composition, tracking, and respectful distance.</p></article>
-        <article class="card"><h3>Community & education</h3><p class="muted">Talks, school sessions, and citizen-science projects that make a real difference.</p></article>
+        <article class="card"><h3>Community & education</h3><p class="muted">Talks, school sessions, and citizen‑science projects that make a real difference.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- Trips -->
+  <!-- TRIPS -->
   <section id="trips" class="section" style="background:rgba(255,255,255,.03); border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08)">
     <div class="container">
       <h2>Upcoming trips</h2>
@@ -157,7 +184,7 @@
     </div>
   </section>
 
-  <!-- Gallery -->
+  <!-- GALLERY -->
   <section id="gallery" class="section">
     <div class="container">
       <h2>Recent moments</h2>
@@ -171,7 +198,7 @@
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- CONTACT -->
   <section id="contact" class="section" style="padding-bottom:90px">
     <div class="container">
       <h2>Contact</h2>
@@ -199,6 +226,31 @@
   <script>
     const scrollToId = (id) => document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hamburger menu toggle
+    const menu = document.querySelector('.menu');
+    const btn = document.querySelector('.menu-btn');
+    const panel = document.getElementById('primary-menu');
+    if (btn && menu && panel) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target)) {
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.focus();
+        }
+      });
+    }
   </script>
 </body>
 </html>
